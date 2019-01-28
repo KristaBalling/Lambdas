@@ -98,13 +98,26 @@ interface UpperConcat {
 class AnotherClass {
 
     public String doSomething() {
-        System.out.println("The AnotherClass class's name is: " + getClass().getSimpleName());
-        return Main.doStringStuff(new UpperConcat() {
-            @Override
-            public String upperAndConcat(String s1, String s2) {
-                System.out.println("The anonymous class's name is: " + getClass().getSimpleName());
-                return s1.toUpperCase() + s2.toUpperCase();
-            }
-        }, "String 1 ", "String 2");
+        UpperConcat uc = (s1, s2) -> {
+            System.out.println("The lambda expression's class is " + getClass().getSimpleName());
+            String result = s1.toUpperCase() + s2.toUpperCase();
+            return result;
+        };
+
+        System.out.println("The AnotherClass class's name is " + getClass().getSimpleName());
+        return Main.doStringStuff(uc, "String1", "String2");
+
+        //both statements above print AnotherClass as their class because a lambda is not a class
+        //a lamda is treated as a nested block of code within a class
+
+//    public String doSomething() {
+//        System.out.println("The AnotherClass class's name is: " + getClass().getSimpleName());
+//        return Main.doStringStuff(new UpperConcat() {
+//            @Override
+//            public String upperAndConcat(String s1, String s2) {
+//                System.out.println("The anonymous class's name is: " + getClass().getSimpleName());
+//                return s1.toUpperCase() + s2.toUpperCase();
+//            }
+//        }, "String 1 ", "String 2");
     }
 }
