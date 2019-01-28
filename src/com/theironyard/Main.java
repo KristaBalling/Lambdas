@@ -19,21 +19,26 @@ public class Main {
         employees.add(jack);
         employees.add(snow);
 
-        for (Employee employee : employees) {
+        employees.forEach(employee -> {
             System.out.println(employee.getName());
-            new Thread(() -> System.out.println(employee.getAge())).start();
-        }
+            System.out.println(employee.getAge());
+        });
+//        for (Employee employee : employees) {
+//            System.out.println(employee.getName());
+//            System.out.println(employee.getAge());
+//            new Thread(() -> System.out.println(employee.getAge())).start();
+//        }
 
-        System.out.println("****************");
-
-        Employee employee;
-
-        for(int i=0; i<employees.size(); i++) {
-            employee = employees.get(i);
-            System.out.println(employee.getName());
-            new Thread(() -> System.out.println(employee.getAge())).start();
-
-        }
+//        System.out.println("****************");
+//
+//        Employee employee;
+//
+//        for(int i=0; i<employees.size(); i++) {
+//            employee = employees.get(i);
+//            System.out.println(employee.getName());
+//            new Thread(() -> System.out.println(employee.getAge())).start();
+//
+//        }
     }
 
 
