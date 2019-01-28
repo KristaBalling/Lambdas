@@ -103,22 +103,57 @@ class AnotherClass {
 //            String result = s1.toUpperCase() + s2.toUpperCase();
 //            return result;
 //        };
-       final int i = 0;
+        int i = 0;
+
+        UpperConcat uc = (s1, s2) -> {
+            System.out.println("The lambda expression's class is " + getClass().getSimpleName());
+            System.out.println("i in the lambda expression = " + i);
+            String result = s1.toUpperCase() + s2.toUpperCase();
+            return result;
+        };
+
+        int j = 0;
         {
-            UpperConcat uc = new UpperConcat() {
-                @Override
-                public String upperAndConcat(String s1, String s2) {
-                    System.out.println("i (within anonymous class) = " + i);
-                    return s1.toUpperCase() + s2.toUpperCase();
-                }
-            };
-
-            System.out.println("The AnotherClass class's name is " + getClass().getSimpleName());
-
-//            i++;
-            System.out.println("i = " + i);
-            return Main.doStringStuff(uc, "String1", "String2");
+            String s1;
+            String s2;
         }
+
+        System.out.println("The AnotherClass class's name is " + getClass().getSimpleName());
+        return Main.doStringStuff(uc, "String1", "String2");
+    }
+
+    //method will finish executing before the lambda runs
+    //int will = 0
+    public void printValue() {
+
+        int number = 25;
+
+        Runnable r = () -> {
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("The value is " + number);
+        };
+
+        new Thread(r).start();
+    }
+}
+
+//            UpperConcat uc = new UpperConcat() {
+//                @Override
+//                public String upperAndConcat(String s1, String s2) {
+//                    System.out.println("i (within anonymous class) = " + i);
+//                    return s1.toUpperCase() + s2.toUpperCase();
+//                }
+//            };
+//
+//            System.out.println("The AnotherClass class's name is " + getClass().getSimpleName());
+//
+////            i++;
+//            System.out.println("i = " + i);
+//            return Main.doStringStuff(uc, "String1", "String2");
 
 
 
@@ -134,5 +169,4 @@ class AnotherClass {
 //                return s1.toUpperCase() + s2.toUpperCase();
 //            }
 //        }, "String 1 ", "String 2");
-    }
-}
+
