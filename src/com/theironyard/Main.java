@@ -43,7 +43,14 @@ public class Main {
 //        },
 //                employees.get(0).getName(), employees.get(1).getName());
 //        System.out.println(sillyString);
-        UpperConcat uc = (s1, s2) -> s1.toUpperCase() + s2.toUpperCase();
+
+        //executing multiple things in a lambda statement using curly braces
+        //return keyword is required when you add curly braces even if there is only one statement in the body
+        UpperConcat uc = (s1, s2) -> {
+            String result = s1.toUpperCase() + s2.toUpperCase();
+            return result;
+        };
+
         String sillyString = doStringStuff(uc, employees.get(0).getName(), employees.get(1).getName());
         System.out.println(sillyString);
     }
@@ -84,4 +91,16 @@ class Employee {
 
 interface UpperConcat {
     public String upperAndConcat(String s1, String s2);
+}
+
+class AnotherClass {
+
+    public void doSomething() {
+        return Main.doStringStuff(new UpperConcat() {
+            @Override
+            public String upperAndConcat(String s1, String s2) {
+                return s1.toUpperCase() + s2.toUpperCase()
+            }
+        }, "String 1", "String2");
+    }
 }
