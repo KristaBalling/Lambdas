@@ -23,6 +23,17 @@ public class Main {
             System.out.println(employee.getName());
             new Thread(() -> System.out.println(employee.getAge())).start();
         }
+
+        System.out.println("****************");
+
+        Employee employee;
+
+        for(int i=0; i<employees.size(); i++) {
+            employee = employees.get(i);
+            System.out.println(employee.getName());
+            new Thread(() -> System.out.println(employee.getAge())).start();
+
+        }
     }
 
 
